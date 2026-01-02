@@ -1,5 +1,6 @@
-package com.samalss.iam_service.service;
+package com.samalss.iam_service.service.Impl;
 
+import com.samalss.iam_service.service.PostService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
