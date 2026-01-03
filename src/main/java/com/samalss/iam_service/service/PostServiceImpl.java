@@ -1,5 +1,6 @@
 package com.samalss.iam_service.service;
 
+import com.samalss.iam_service.mapper.PostMapper;
 import com.samalss.iam_service.model.constants.ApiErrorMessage;
 import com.samalss.iam_service.model.dto.Post.PostDTO;
 import com.samalss.iam_service.model.entities.Post;
@@ -14,18 +15,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
+    private final PostMapper postMapper;
 
     @Override
     public IamResponse<PostDTO> getById(@NotNull Integer postId) {
         Post post = postRepository.findById(postId).orElseThrow(()->
             new NotFoundException(ApiErrorMessage.POST_NOT_FOUND_BY_ID.getMessage(postId)));
-        PostDTO postDTO = PostDTO.builder()
-                .id(post.getId())
-                .title(post.getTitle())
-                .content(post.getContent())
-                .likes(post.getLikes())
-                .created(post.getCreated())
-        .build();
+        PostDTO postDTO = postMapper.toPostDTO(post);
 
         return IamResponse.createdSuccessful(postDTO);
     }
