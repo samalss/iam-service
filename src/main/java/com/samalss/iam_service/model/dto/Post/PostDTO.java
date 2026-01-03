@@ -1,0 +1,22 @@
+package com.samalss.iam_service.model.dto.Post;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class PostDTO implements Serializable {
+    private Integer id;
+    private String title;
+    private String content;
+    private LocalDateTime created;
+    private Integer likes;
+}
